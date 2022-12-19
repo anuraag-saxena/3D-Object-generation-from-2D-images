@@ -139,11 +139,11 @@ def predict():
         else:
             os.remove(file.path)
     
-    images = sorted( filter( lambda x: os.path.isfile(os.path.join(img_dir, x)), os.listdir(img_dir) ) )
+    
     for f in request.files.getlist('imagefile'):
         image_path = "./submits/" + f.filename
         f.save(image_path)
-
+    images = sorted( filter( lambda x: os.path.isfile(os.path.join(img_dir, x)), os.listdir(img_dir) ) )
     exif, K = get_camera_intrinsic_params(img_dir)
     j = 0
     for i in range(len(images)):
