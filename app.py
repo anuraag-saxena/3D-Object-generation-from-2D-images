@@ -136,9 +136,6 @@ def predict():
         if(file.path == './submits/Point_Cloud'):
             continue
         os.remove(file.path)
-    cameras.clear()
-    point_cloud.clear()
-    point_color.clear()
     
     for f in request.files.getlist('imagefile'):
         image_path = "./submits/" + f.filename
@@ -179,6 +176,9 @@ def predict():
 @app.route('/download')
 def download():
     path = './submits/Point_Cloud/submits_sparse.ply'
+    cameras.clear()
+    point_cloud.clear()
+    point_color.clear()
     return send_file(path, as_attachment=True)
 
 
