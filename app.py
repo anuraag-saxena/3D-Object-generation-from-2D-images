@@ -146,7 +146,7 @@ def predict():
 
     exif, K = get_camera_intrinsic_params(img_dir)
     j = 0
-    for i in tqdm(range(len(images))):
+    for i in range(len(images)):
         if images[i].split('.')[-1] in ['JPG', 'jpg', 'PNG', 'png', 'RAW', 'raw', 'TIF', 'tif']:
             img = cv2.imread(img_dir + images[i])
             if img.shape[1] != exif['width'] or img.shape[0] != exif['height']:
