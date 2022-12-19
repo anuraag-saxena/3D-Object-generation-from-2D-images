@@ -130,7 +130,7 @@ def hello_world():
     return render_template('index.html')
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST', "GET"])
 def predict():
     for file in os.scandir(img_dir):
         if(file.path == './submits/Point_Cloud'):
