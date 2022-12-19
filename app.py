@@ -137,6 +137,7 @@ def predict():
             continue
         os.remove(file.path)
     
+    images = sorted( filter( lambda x: os.path.isfile(os.path.join(img_dir, x)), os.listdir(img_dir) ) )
     for f in request.files.getlist('imagefile'):
         image_path = "./submits/" + f.filename
         f.save(image_path)
