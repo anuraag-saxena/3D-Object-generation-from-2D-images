@@ -7,7 +7,7 @@ import exifread
 from disk_features.feature import extract_features, match_features
 from scipy.optimize import least_squares
 from scipy.sparse import lil_matrix
-
+import shutil
 
 img_dir = './submits/'
 images = sorted( filter( lambda x: os.path.isfile(os.path.join(img_dir, x)), os.listdir(img_dir) ) )
@@ -133,9 +133,11 @@ def hello_world():
 @app.route('/', methods=['POST', "GET"])
 def predict():
     for file in os.scandir(img_dir):
-        if(file.path == './submits/Point_Cloud'):
+        if(file.path == './submits/Point_Cloud/' or file.path == './submits/Point_Cloud'):
+            shutil.rmtree(file.path)
             continue
-        os.remove(file.path)
+        else:
+            os.remove(file.path)
     
     images = sorted( filter( lambda x: os.path.isfile(os.path.join(img_dir, x)), os.listdir(img_dir) ) )
     for f in request.files.getlist('imagefile'):
